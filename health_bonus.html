@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wage and Bonus Calculator</title>
+  <script>
+    function calculate() {
+      const fteSalary = parseFloat(document.getElementById('fteSalary').value);
+      const targetProd = parseFloat(document.getElementById('targetProd').value);
+      const fteEquivalent = parseFloat(document.getElementById('fteEquivalent').value);
+      const actualProd = parseFloat(document.getElementById('actualProd').value);
+
+      const grossSalary = fteSalary * fteEquivalent;
+      const wages4w = grossSalary / 52 * 4;
+      const bonus = Math.max(0, (actualProd - targetProd) / targetProd);
+      const bonus4w = wages4w * bonus;
+
+      document.getElementById('wages4w').innerText = wages4w.toFixed(2);
+      document.getElementById('bonus4w').innerText = bonus4w.toFixed(2);
+    }
+  </script>
+</head>
+<body>
+  <h2>Wage and Bonus Calculator</h2>
+  <label>FTE Equivalent Salary: <input type="number" id="fteSalary" value="100000"></label><br>
+  <label>Target Productivity: <input type="number" step="0.01" id="targetProd" value="0.85"></label><br>
+  <label>FTE Equivalent: <input type="number" step="0.01" id="fteEquivalent" value="0.8"></label><br>
+  <label>Actual Productivity: <input type="number" step="0.01" id="actualProd" value="0.99"></label><br>
+  <button onclick="calculate()">Calculate</button>
+  <h3>Results</h3>
+  <p>4 Weekly Wages - Base (Gross): $<span id="wages4w">0.00</span></p>
+  <p>Bonus $ 4 week: $<span id="bonus4w">0.00</span></p>
+</body>
+</html>
